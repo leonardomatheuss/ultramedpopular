@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Loop de Ofertas</title>
+    <style>
+        body {
+            margin: 0;
+            background: black;
+            overflow: hidden;
+        }
+        video {
+            width: 100vw;
+            height: 100vh;
+            object-fit: contain; /* ou "cover" se quiser ocupar a tela inteira cortando as bordas */
+        }
+    </style>
+</head>
+<body>
+
+<video id="player" autoplay muted></video>
+
+<script>
+    // Lista de vídeos (automaticamente carregada da pasta "videos")
+    const videos = [
+        "videos/tv.mp4",
+    ];
+
+    let i = 0;
+    const player = document.getElementById("player");
+
+    function tocarProximo() {
+        player.src = videos[i];
+        player.play();
+
+        // Próximo vídeo (loop infinito)
+        i = (i + 1) % videos.length;
+    }
+
+    // Quando o vídeo acaba → toca o próximo
+    player.addEventListener("ended", tocarProximo);
+
+    // Inicia a playlist
+    tocarProximo();
+</script>
+
+</body>
+</html>
